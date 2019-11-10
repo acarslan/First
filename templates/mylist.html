@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <div class="container w-50">
+        <div class="col-sm-12 kutu p-3 m-auto mb-3">
+            <div class="d-flex">
+                <div class="form-group flex-grow-1">
+                    <form action="createlist" method="post">
+                        {% csrf_token %}
+                    
+                        {{createlistform.list_name}}
+                </div>
+                <button class="button button-light ml-3" style="outline:none;">CREATE</button>
+                </form>
+            </div>
+            <div class="title font-weight-bold"><span style="font-size: x-large;">MYLIST</span> </div>
+
+            {% if wordlist %}
+            {% for i in wordlist %}
+            
+            <div class="cubuk mb-3 p-1 clearfix rounded">
+                <span class="m-1 ml-2 mt-2 d-inline-block font-weight-bold">{{i}}</span>
+
+                <a href="deletelist/{{i.id}}">
+                <button type="button" class="button button-dark d-inline-block float-right red" style="outline: none;"
+                    data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                </a>
+                <a href="list/{{i.id}}">
+                <button type="button" class="button button-dark d-inline-block float-right mr-1" data-toggle="tooltip"
+                    data-placement="top" title="Edit" style="outline: none;"><i class="fas fa-edit"></i></button>
+                </a>
+            </div>
+            
+            {% endfor %}
+            {% else %}
+            <div class="cubuk mb-3 text-center p-1 clearfix rounded">
+                <span class="m-1 ml-2 mt-2 d-inline-block font-weight-bold">NO LIST</span>
+               
+            </div>
+            {% endif %}
+
+
+
+            <form action="addsharedlist" method="post">
+            <div class="title font-weight-bold d-flex">
+                <span class="d-inline-block flex-grow-1 mt-1" style="font-size: x-large;">SHAREDLIST</span>
+                
+                <div class="form-group ml-3">
+                    {% csrf_token %}
+                    {{sharedlistaddform.access_key}}
+                </div>
+                
+                <button class="button button-light font-weight-normal ml-3" style="outline: none;">ADD</button>
+            </div>
+            </form>
+
+            {% if sharedlist %}
+            {% for i in sharedlist %}
+
+            <div class="cubuk mb-3 p-1 clearfix rounded">
+                <span class="m-1 ml-2 mt-2 d-inline-block font-weight-bold"><a href="list/{{i.id}}">{{i}}</a></span>
+                <a href="removesharedlist/{{i.access_key}}">
+                <button type="button" class="button button-dark d-inline-block float-right red" title="Delete"
+                    style="outline: none;"><i class="fas fa-trash-alt"></i></button>
+                </a>
+            </div>
+            
+            {% endfor %}
+            {% else %}
+            <div class="cubuk mb-3 text-center p-1 clearfix rounded">
+                <span class="m-1 ml-2 mt-2 d-inline-block font-weight-bold">NO SHARED LIST</span>
+               
+            </div>
+            {% endif %}
+
+            
+
+        </div>
+        
+{% endblock body %}

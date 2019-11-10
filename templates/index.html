@@ -1,0 +1,150 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-sm-4 " style="padding-left:0;">
+
+                        <!--ChooseList Start-->
+                        <div class="dropdown mb-2 cylist-sm">
+                            <button type="button" class="dropdown-toggle dropdown-list mb-1" data-toggle="dropdown">
+                                {% if selected %}
+                                    {{selectedname}}
+                                {% else %}
+                                    CHOOSE YOUR LIST
+                                {% endif %}
+                            </button>
+                            <ul id="choose-list" class="dropdown-menu">
+                                {% for i in selectlist %}
+                                <form method="post">
+                                    <li>
+                                    {% csrf_token %}
+                                    <input type="hidden" name="selectedlist" value="{{i.id}}">
+                                    <input class="dropdown-item" type="submit" value="{{i}}">
+                                    
+                                    </li>
+                                </form>
+                                 {% endfor %}
+                                
+                            </ul>
+                        </div>
+                        <!--ChooseList End-->
+
+                    </div>
+                    <!--Generate Start-->
+                    <div class="col-sm-8 clearfix px-0 ">
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="wlist" value="{{selected}}">
+                            <button type="submit" class="button button-dark mb-sm-1 float-sm-right generate-sm" style="outline:none;">GENERATE</button>
+                        </form>
+                    </div>
+                    
+                    <!--Generate End-->
+
+                    <!--WordBox Start-->
+                    {% if word %}
+                    <div class="col-sm-12 kutu p-3">
+                        <p class="mb-1 font-weight-bold">WORD</p>
+                        <p class="wire-frame p-2 text-uppercase"><span id="word">{{word.word}}</span> <span>({{word.type}})</span></p>
+
+                        <p class="mb-1 font-weight-bold">DESCRIPTION</p>
+                        <p id="description" class="wire-frame p-2">{{word.gloss}}
+                        </p>
+
+                        {% if word.similars %}
+                        <p class="mb-1 font-weight-bold">SYNONYMS</p>
+                        <p id="synonyms" class="wire-frame p-2 d-inline-block">
+                            {% for i in word.similars %}
+                            <span class="badge m-1 badge-primary">{{i}}</span>
+                            {% endfor %}
+                        </p>
+                        {% endif %}
+
+                        {% if word.antonyms %}
+                        <p class="mb-1 font-weight-bold">ANTONYM</p>
+                        <p id="synonyms" class="wire-frame p-2 d-inline-block">
+                            {% for i in word.antonyms %}
+                            <span class="badge m-1 badge-primary">{{i}}</span>
+                            {% endfor %}
+                        </p>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <div class="col-sm-12 kutu p-3">
+                        <p class="mb-1 font-weight-bold">WORD</p>
+                        <p class="wire-frame p-2 text-uppercase"><span id="word">example</span> <span>(n)</span></p>
+
+                        <p class="mb-1 font-weight-bold">DESCRIPTION</p>
+                        <p id="description" class="wire-frame p-2">A thing characteristic of its kind or
+                            illustrating a
+                            general rule.
+                        </p>
+
+                        <p class="mb-1 font-weight-bold">SYNONYMS</p>
+                        <p id="synonyms" class="wire-frame p-2 d-inline-block">
+                            <span class="badge m-1 badge-primary">warning</span>
+                            <span class="badge m-1 badge-primary">specimen</span>
+                            <span class="badge m-1 badge-primary">precedent</span>
+                            <span class="badge m-1 badge-primary">lesson</span>
+                            <span class="badge m-1 badge-primary">illustration</span>
+                            <span class="badge m-1 badge-primary">model</span>
+                            <span class="badge m-1 badge-primary">good example</span>
+                            <span class="badge m-1 badge-primary">exercise</span>
+                            <span class="badge m-1 badge-primary">instance</span>
+                        </p>
+
+                        <p class="mb-1 font-weight-bold">ANTONYM</p>
+                        <p id="antonym" class="wire-frame p-2 d-inline-block">
+                            <span class="badge m-1 badge-primary">atypical</span>
+                            
+                        </p>
+
+                    </div>
+                    {% endif %}
+                    
+                    <!--WordBox End-->
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row mt-sm-5">
+                    <div class="col-12 mb-2">
+                        <!--ChooseWeb Start-->
+                        <div class="dropdown">
+                            <button id="webSite" type="button" class="dropdown-toggle dropdown-list"
+                                data-toggle="dropdown" value=" ">
+                                CHOOSE WEB SITE
+                            </button>
+                            <ul id="choose-web" class="dropdown-menu ">
+                                <li class="dropdown-item">GOOGLE TRANSLATE</li>
+                                <li class="dropdown-item">YANDEX TRANSLATE</li>
+                            </ul>
+                        </div>
+                        <!--ChooseWeb End-->
+                    </div>
+                    <div class="col-12 mb-2">
+                        <!--ChooseLang Start-->
+                        <div class="dropdown">
+                            <button id="yourLang" type="button" class="dropdown-toggle dropdown-list"
+                                data-toggle="dropdown" value=" ">CHOOSE YOUR LANG</button>
+                            <ul id="choose-lang" class="dropdown-menu" style="overflow:auto; max-height:20rem;">
+                            </ul>
+
+                        </div>
+                        <!--ChooseLang End-->
+
+                    </div>
+                    <div class="col-12 mb-sm-4 translate-sm">
+                        <button id="translate" class="button button-dark" style="outline:none; height: auto;"
+                            onclick="trans()">TRANSLATE</button>
+                        <small class="form-text text-muted">If you want to select a language, you must select a web
+                            site.</small>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

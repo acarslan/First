@@ -1,0 +1,134 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container">
+        <div class="row">
+            <div class="col-sm-8" style="margin: auto;">
+                <div class="accordion m-4 rounded" id="accordionExample">
+                    <!--E-mail Start-->
+                    <div class="card accordion-card">
+                        <button class="card-header accordion-card-header p-2" id="headingOne" type="button" data-toggle="collapse"
+                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="outline: none;">
+                            E-mail Değiştir
+                        </button>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div>
+                                    <h6> Geçerli E-posta</h6>
+                                </div>
+                                <div class="p-2 m-2 borderbottom text-muted">default@email.com</div>
+                                <div class="form-group">
+                                    <label for="InputNewEmail">Yeni E-posta Adresiniz</label>
+                                    <input type="email" class="form-control" id="InputNewEmail"
+                                        aria-describedby="emailHelp" placeholder="Enter email">
+                                </div>
+                                <div class="button button-light">Kaydet</div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!--E-mail End-->
+                    <!--Password Start-->
+                    <div class="card accordion-card">
+                        <button class="card-header accordion-card-header p-2" id="headingTwo" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne" style="outline: none;">
+                            Password Değiştir
+                        </button>
+
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="form-group p-1 borderbottom">
+                                    <label for="InputPassword">Eski Password</label>
+                                    <input type="password" class="form-control" id="InputPassword"
+                                        placeholder="Eski Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputPassword">Yeni Password</label>
+                                    <input type="password" class="form-control" id="InputPassword"
+                                        placeholder="Yeni Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputPassword">Password Onay</label>
+                                    <input type="password" class="form-control" id="InputPassword"
+                                        placeholder="Password Onay">
+                                </div>
+                                <div class="button button-light">Kaydet</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Password End-->
+                    <!--Color Start-->
+                    <div class="card accordion-card">
+                        <button class="card-header accordion-card-header p-2" id="headingThree" type="button" data-toggle="collapse"
+                            data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree" style="outline: none;">
+                            Görünüm
+                        </button>
+
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-6 px-2">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="color-square blue float-left"></div> 
+                                                <div><h5 class="float-left p-3 m-2" style="text-align: center;">Blue</h5></div> 
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="color-square purple float-left"></div> 
+                                                <div><h5 class="float-left p-3 m-2" style="text-align: center;">Purple</h5></div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="color-square yellow float-left"></div> 
+                                                <div><h5 class="float-left p-3 m-2" style="text-align: center;">Yellow</h5></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 px-2">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="color-square red float-left"></div> 
+                                                <div><h5 class="float-left p-3 m-2" style="text-align: center;">Red</h5></div> 
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="color-square green float-left"></div> 
+                                                <div><h5 class="float-left p-3 m-2" style="text-align: center;">Green</h5></div> 
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="color-square cyan float-left"></div> 
+                                                <div><h5 class="float-left p-3 m-2" style="text-align: center;">Cyan</h5></div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Color End-->
+                    <!--AccountDel Start-->
+                    <div class="card accordion-card">
+                        <button class="card-header accordion-card-header p-2" id="headingForth" type="button" data-toggle="collapse"
+                            data-target="#collapseForth" aria-expanded="true" aria-controls="collapseForth" style="outline: none;">
+                            Hesab Silme
+                        </button>
+
+                        <div id="collapseForth" class="collapse" aria-labelledby="headingForth"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                <p> Bu hesabı kapatırsanız sonsuza kadar silinmiş olucaktır. Emin misiniz?</p>
+                                <div class="button button-light">Hesabı Sil</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--AccountDel End-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock body %}
+
